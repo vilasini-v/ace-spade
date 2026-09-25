@@ -1,0 +1,389 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>ACE SPADE</title>
+
+  <link
+    rel="stylesheet"
+    href="/style.css"
+  >
+
+</head>
+
+
+<body>
+
+<main id="app">
+
+
+  <!-- =========================
+       LOBBY
+  ========================== -->
+
+  <section
+    id="lobby"
+    class="screen"
+  >
+
+    <div class="logo">
+      <span>ACE</span>
+      <b>♠</b>
+      <span>SPADE</span>
+    </div>
+
+
+    <p class="tag">
+      A live multiplayer card game
+    </p>
+
+
+    <div class="panel">
+
+      <label>
+        Your name
+
+        <input
+          id="name"
+          maxlength="20"
+          placeholder="Player"
+        >
+
+      </label>
+
+
+      <div class="actions">
+
+        <button id="create">
+          Create game
+        </button>
+
+
+        <div class="join">
+
+          <input
+            id="code"
+            maxlength="5"
+            placeholder="ROOM CODE"
+          >
+
+          <button id="join">
+            Join
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <button
+        id="tutorialBtn"
+        class="secondary full"
+      >
+        How to play
+      </button>
+
+
+      <p
+        id="lobbyMsg"
+        class="msg"
+      ></p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       GAME
+  ========================== -->
+
+  <section
+    id="game"
+    class="screen hidden"
+  >
+
+    <header>
+
+      <div class="brand">
+        ACE ♠ SPADE
+      </div>
+
+      <div class="room">
+        ROOM
+        <strong id="roomCode"></strong>
+      </div>
+
+    </header>
+
+
+    <div
+      id="status"
+      class="status"
+    ></div>
+
+
+    <div
+      id="players"
+      class="players"
+    ></div>
+
+
+    <div class="table">
+
+      <div
+        id="trick"
+        class="trick"
+      ></div>
+
+    </div>
+
+
+    <div class="hand-wrap">
+
+      <div class="hand-title">
+
+        YOUR HAND
+
+        <span id="turnHint"></span>
+
+      </div>
+
+
+      <div
+        id="hand"
+        class="hand"
+      ></div>
+
+    </div>
+
+
+    <div
+      id="gameMsg"
+      class="msg"
+    ></div>
+
+
+    <div class="game-actions">
+
+      <button
+        id="newGame"
+        class="secondary"
+      >
+        New game
+      </button>
+
+      <button
+        id="exitGame"
+        class="danger"
+      >
+        Exit
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       TUTORIAL
+  ========================== -->
+
+  <div
+    id="tutorial"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+  >
+
+    <div class="modal-card">
+
+      <button
+        id="closeTutorial"
+        class="close"
+      >
+        ×
+      </button>
+
+
+      <div class="mini-logo">
+        ACE
+        <span>♠</span>
+        SPADE
+      </div>
+
+
+      <h2>
+        How to Play
+      </h2>
+
+
+      <div class="rules">
+
+        <div>
+
+          <b>1. Start with A♠</b>
+
+          <p>
+            Whoever has the Ace of Spades
+            starts the game. Their first
+            card must be A♠.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <b>2. Follow the suit</b>
+
+          <p>
+            The first card played determines
+            the suit for the round. If you
+            have that suit, you must play it.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <b>3. No suit? CUT!</b>
+
+          <p>
+            If you don't have the required
+            suit, you must CUT. There is no
+            pass.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <b>4. CUT ends the round</b>
+
+          <p>
+            When someone cuts, the round
+            immediately ends. The highest
+            card of the starting suit takes
+            all cards played.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <b>5. Win the round</b>
+
+          <p>
+            If nobody cuts, the highest card
+            of the starting suit wins.
+            That player starts the next round
+            with any card.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <b>6. Win the game</b>
+
+          <p>
+            After a round completely ends,
+            the first player whose hand is
+            empty wins.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <button
+        id="tutorialDone"
+        class="full"
+      >
+        Got it
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================
+       WINNER CELEBRATION
+  ========================== -->
+
+  <div
+    id="celebration"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+  >
+
+    <div class="celebrate-card">
+
+      <div
+        class="confetti"
+        aria-hidden="true"
+      >
+        ✦ ✧ ♠ ✦ ✧
+      </div>
+
+
+      <div class="trophy">
+        🏆
+      </div>
+
+
+      <h1 id="winnerName">
+        Winner!
+      </h1>
+
+      <div class="celebrate-actions">
+
+        <button id="celebrateNew">
+          New game
+        </button>
+
+
+        <button
+          id="celebrateExit"
+          class="secondary"
+        >
+          Exit
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</main>
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script src="/app.js"></script>
+
+</body>
+
+</html>
